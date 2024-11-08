@@ -190,6 +190,13 @@ p {
     border: var(--menu-color) solid 4px;
 }
 
+.alertsUp {
+    border: 0;
+    min-width: 300px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
 .alertsControl {
     padding: 7px;
     width: 100%;
@@ -378,4 +385,22 @@ p {
 
 .chanelTitle {
     font-weight: 1000;
+}
+
+.alt {
+    width: 100%;
+    height: 45px;
+    background-color: #ED4040;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.altTitle {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
 }
