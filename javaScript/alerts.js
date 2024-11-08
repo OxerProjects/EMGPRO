@@ -47,32 +47,45 @@ areaOfAlert.addEventListener("click", () => {
     area = areaName.value;
 })
 
+
 async function getAlerts() {
     try {
         const response = await fetch("https://www.mako.co.il/Collab/amudanan/alerts.json");
         const alertArray = await response.json();
-        count++
+        count++;
+        
         if (alertArray.data.length > 0) {
             console.log("נמצאה אזעקה ב:");
             console.log(alertArray);
             console.log(alertArray.data);
+
             alertArray.data.forEach(element => {
-                console.log(element)
+                console.log(element);
+
+                // Adding the new Alert entry
+                let now = new Date();
+                if(Alerts.find(({ title }) => title === element ) === null) {
+                    Alerts.push({
+                        'title': element,
+                        'time': `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+                    });
+                }
+
                 if (element === "בית דגן" || element === area) {
-                    if (ditectenRedAlert == 0) {
-                        count = 0
+                    if (ditectenRedAlert === 0) {
+                        count = 0;
                         startCountdown();
                         alertBackground();
-                        ditectenRedAlert = 1
+                        ditectenRedAlert = 1;
                         document.querySelector('#areaBox').className = "areaBox";
                     }
-                    if (count == 15) {
+                    if (count === 15) {
                         areaAlert();
                     }
-                    if (count == 600) {
-                        count = 0
+                    if (count === 600) {
+                        count = 0;
                         deAlertBackground();
-                        ditectenRedAlert = 0
+                        ditectenRedAlert = 0;
                     }
                 }
             });
